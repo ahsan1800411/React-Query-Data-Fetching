@@ -6,6 +6,14 @@ const fetchSuperHeroes = () => {
 };
 
 const RQSuperHeroesPage = () => {
+  const onSuccess = (data) => {
+    console.log("Success", data);
+  };
+
+  const onError = (error) => {
+    console.log("Error", error);
+  };
+
   const { isLoading, data, isError, error, refetch, isFetching } = useQuery(
     "super-hero",
     fetchSuperHeroes,
@@ -14,7 +22,9 @@ const RQSuperHeroesPage = () => {
       // refetchOnMount: "always",
       // refetchInterval: 2000,
       // refetchIntervalInBackground: true,
-      enabled: false,
+      // enabled: false,
+      onError,
+      onSuccess,
     }
   );
   console.log({ isLoading, isFetching });
